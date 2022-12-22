@@ -3,15 +3,15 @@
 
 use panic_halt as _;
 
-const SYSFREQ:u32 = 320_000_000;
+const SYSFREQ: u32 = 320_000_000;
 use bl808_pac as pac;
-use riscv::delay::McycleDelay;
 use embedded_hal::blocking::delay::DelayMs;
+use riscv::delay::McycleDelay;
 
 #[riscv_rt::entry]
 fn main() -> ! {
     let mut delay = McycleDelay::new(SYSFREQ);
-    let peris = unsafe {pac::Peripherals::steal()};
+    let peris = unsafe { pac::Peripherals::steal() };
     let led = &peris.GLB.gpio_config[8];
     // Configure GP8 as an output pin
     led.modify(|_, w| {
@@ -24,7 +24,7 @@ fn main() -> ! {
     });
     loop {
         // Enable LED
-        led.modify(|_,w| {
+        led.modify(|_, w| {
             w.output_clear().set_bit();
             w.output_set().clear_bit();
             w
@@ -32,7 +32,7 @@ fn main() -> ! {
         delay.delay_ms(1000);
 
         // Disable LED
-        led.modify(|_, w|{
+        led.modify(|_, w| {
             w.output_set().set_bit();
             w.output_clear().clear_bit();
             w
