@@ -1,6 +1,5 @@
 extern crate riscv_target;
 
-use riscv_target::Target;
 use std::env;
 use std::fs;
 use std::io::Write;
