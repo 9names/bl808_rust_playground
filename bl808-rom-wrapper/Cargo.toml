@@ -1,5 +1,5 @@
 [package]
-name = "bl808_rom_wrapper"
+name = "bl808-rom-wrapper"
 version = "0.1.0"
 authors = ["9names <60134748+9names@users.noreply.github.com>"]
 edition = "2021"
