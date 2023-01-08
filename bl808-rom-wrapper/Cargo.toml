@@ -1,8 +1,11 @@
 [package]
-name = "bl808-rom-wrapper"
+name = "bl808_rom_wrapper"
 version = "0.1.0"
 authors = ["9names <60134748+9names@users.noreply.github.com>"]
 edition = "2021"
 
 # [dependencies]
 # cty = "0.2.1"
+
+[dependencies]
+paste = "1.0.11"

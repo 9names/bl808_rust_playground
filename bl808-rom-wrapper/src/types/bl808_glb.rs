@@ -818,12 +818,12 @@ fn bindgen_test_layout_GLB_WAC_PLL_Cfg_Type() {
     let ptr = UNINIT.as_ptr();
     assert_eq!(
         ::core::mem::size_of::<GLB_WAC_PLL_Cfg_Type>(),
-        16usize,
+        8usize,
         concat!("Size of: ", stringify!(GLB_WAC_PLL_Cfg_Type))
     );
     assert_eq!(
         ::core::mem::align_of::<GLB_WAC_PLL_Cfg_Type>(),
-        8usize,
+        4usize,
         concat!("Alignment of ", stringify!(GLB_WAC_PLL_Cfg_Type))
     );
     assert_eq!(
@@ -838,7 +838,7 @@ fn bindgen_test_layout_GLB_WAC_PLL_Cfg_Type() {
     );
     assert_eq!(
         unsafe { ::core::ptr::addr_of!((*ptr).clkpllSdmin) as usize - ptr as usize },
-        8usize,
+        4usize,
         concat!(
             "Offset of field: ",
             stringify!(GLB_WAC_PLL_Cfg_Type),
@@ -942,12 +942,12 @@ fn bindgen_test_layout_GLB_MU_PLL_Cfg_Type() {
     let ptr = UNINIT.as_ptr();
     assert_eq!(
         ::core::mem::size_of::<GLB_MU_PLL_Cfg_Type>(),
-        16usize,
+        8usize,
         concat!("Size of: ", stringify!(GLB_MU_PLL_Cfg_Type))
     );
     assert_eq!(
         ::core::mem::align_of::<GLB_MU_PLL_Cfg_Type>(),
-        8usize,
+        4usize,
         concat!("Alignment of ", stringify!(GLB_MU_PLL_Cfg_Type))
     );
     assert_eq!(
@@ -962,7 +962,7 @@ fn bindgen_test_layout_GLB_MU_PLL_Cfg_Type() {
     );
     assert_eq!(
         unsafe { ::core::ptr::addr_of!((*ptr).clkpllSdmin) as usize - ptr as usize },
-        8usize,
+        4usize,
         concat!(
             "Offset of field: ",
             stringify!(GLB_MU_PLL_Cfg_Type),
@@ -1634,60 +1634,23 @@ pub enum GLB_XTAL_Type {
     #[doc = "< type max num"]
     GLB_XTAL_MAX = 7,
 }
-impl GLB_PLL_Type {
-    #[doc = "< power on xtal and pll"]
-    pub const GLB_PLL_NONE: GLB_PLL_Type = GLB_PLL_Type(0);
-}
-impl GLB_PLL_Type {
-    #[doc = "< power on WIFIPLL"]
-    pub const GLB_PLL_WIFIPLL: GLB_PLL_Type = GLB_PLL_Type(1);
-}
-impl GLB_PLL_Type {
-    #[doc = "< power on AUPLL"]
-    pub const GLB_PLL_AUPLL: GLB_PLL_Type = GLB_PLL_Type(2);
-}
-impl GLB_PLL_Type {
-    #[doc = "< power on CPUPLL"]
-    pub const GLB_PLL_CPUPLL: GLB_PLL_Type = GLB_PLL_Type(4);
-}
-impl GLB_PLL_Type {
-    #[doc = "< power on ETHPLL"]
-    pub const GLB_PLL_MIPIPLL: GLB_PLL_Type = GLB_PLL_Type(8);
-}
-impl GLB_PLL_Type {
-    #[doc = "< power on ETHPLL"]
-    pub const GLB_PLL_UHSPLL: GLB_PLL_Type = GLB_PLL_Type(16);
-}
-impl ::core::ops::BitOr<GLB_PLL_Type> for GLB_PLL_Type {
-    type Output = Self;
-    #[inline]
-    fn bitor(self, other: Self) -> Self {
-        GLB_PLL_Type(self.0 | other.0)
-    }
-}
-impl ::core::ops::BitOrAssign for GLB_PLL_Type {
-    #[inline]
-    fn bitor_assign(&mut self, rhs: GLB_PLL_Type) {
-        self.0 |= rhs.0;
-    }
-}
-impl ::core::ops::BitAnd<GLB_PLL_Type> for GLB_PLL_Type {
-    type Output = Self;
-    #[inline]
-    fn bitand(self, other: Self) -> Self {
-        GLB_PLL_Type(self.0 & other.0)
-    }
-}
-impl ::core::ops::BitAndAssign for GLB_PLL_Type {
-    #[inline]
-    fn bitand_assign(&mut self, rhs: GLB_PLL_Type) {
-        self.0 &= rhs.0;
-    }
-}
-#[repr(transparent)]
+#[repr(u32)]
 #[doc = "  @brief PLL power on type definition"]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]
-pub struct GLB_PLL_Type(pub ::core::ffi::c_uint);
+pub enum GLB_PLL_Type {
+    #[doc = "< power on xtal and pll"]
+    GLB_PLL_NONE = 0,
+    #[doc = "< power on WIFIPLL"]
+    GLB_PLL_WIFIPLL = 1,
+    #[doc = "< power on AUPLL"]
+    GLB_PLL_AUPLL = 2,
+    #[doc = "< power on CPUPLL"]
+    GLB_PLL_CPUPLL = 4,
+    #[doc = "< power on ETHPLL"]
+    GLB_PLL_MIPIPLL = 8,
+    #[doc = "< power on ETHPLL"]
+    GLB_PLL_UHSPLL = 16,
+}
 #[repr(u32)]
 #[doc = "  @brief WAC PLL XTAL type definition"]
 #[derive(Debug, Copy, Clone, Hash, PartialEq, Eq)]

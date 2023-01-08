@@ -993,12 +993,12 @@ fn bindgen_test_layout_SFlash_Sec_Reg_Cfg() {
     let ptr = UNINIT.as_ptr();
     assert_eq!(
         ::core::mem::size_of::<SFlash_Sec_Reg_Cfg>(),
-        24usize,
+        20usize,
         concat!("Size of: ", stringify!(SFlash_Sec_Reg_Cfg))
     );
     assert_eq!(
         ::core::mem::align_of::<SFlash_Sec_Reg_Cfg>(),
-        8usize,
+        4usize,
         concat!("Alignment of ", stringify!(SFlash_Sec_Reg_Cfg))
     );
     assert_eq!(
@@ -1073,7 +1073,7 @@ fn bindgen_test_layout_SFlash_Sec_Reg_Cfg() {
     );
     assert_eq!(
         unsafe { ::core::ptr::addr_of!((*ptr).addr) as usize - ptr as usize },
-        16usize,
+        12usize,
         concat!(
             "Offset of field: ",
             stringify!(SFlash_Sec_Reg_Cfg),
@@ -1083,7 +1083,7 @@ fn bindgen_test_layout_SFlash_Sec_Reg_Cfg() {
     );
     assert_eq!(
         unsafe { ::core::ptr::addr_of!((*ptr).len) as usize - ptr as usize },
-        20usize,
+        16usize,
         concat!(
             "Offset of field: ",
             stringify!(SFlash_Sec_Reg_Cfg),
@@ -3939,12 +3939,12 @@ fn bindgen_test_layout_PDS_APP_CFG_Type() {
     let ptr = UNINIT.as_ptr();
     assert_eq!(
         ::core::mem::size_of::<PDS_APP_CFG_Type>(),
-        56usize,
+        36usize,
         concat!("Size of: ", stringify!(PDS_APP_CFG_Type))
     );
     assert_eq!(
         ::core::mem::align_of::<PDS_APP_CFG_Type>(),
-        8usize,
+        4usize,
         concat!("Alignment of ", stringify!(PDS_APP_CFG_Type))
     );
     assert_eq!(
@@ -4069,7 +4069,7 @@ fn bindgen_test_layout_PDS_APP_CFG_Type() {
     );
     assert_eq!(
         unsafe { ::core::ptr::addr_of!((*ptr).flashCfg) as usize - ptr as usize },
-        24usize,
+        20usize,
         concat!(
             "Offset of field: ",
             stringify!(PDS_APP_CFG_Type),
@@ -4079,7 +4079,7 @@ fn bindgen_test_layout_PDS_APP_CFG_Type() {
     );
     assert_eq!(
         unsafe { ::core::ptr::addr_of!((*ptr).ldoLevel) as usize - ptr as usize },
-        32usize,
+        24usize,
         concat!(
             "Offset of field: ",
             stringify!(PDS_APP_CFG_Type),
@@ -4089,7 +4089,7 @@ fn bindgen_test_layout_PDS_APP_CFG_Type() {
     );
     assert_eq!(
         unsafe { ::core::ptr::addr_of!((*ptr).preCbFun) as usize - ptr as usize },
-        40usize,
+        28usize,
         concat!(
             "Offset of field: ",
             stringify!(PDS_APP_CFG_Type),
@@ -4099,7 +4099,7 @@ fn bindgen_test_layout_PDS_APP_CFG_Type() {
     );
     assert_eq!(
         unsafe { ::core::ptr::addr_of!((*ptr).postCbFun) as usize - ptr as usize },
-        48usize,
+        32usize,
         concat!(
             "Offset of field: ",
             stringify!(PDS_APP_CFG_Type),

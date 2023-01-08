@@ -19,6 +19,11 @@ pub const fn rom_lookup_addr(index: RomIndex) -> *mut usize {
     rom_function_table_index as *mut usize
 }
 
+pub const fn rom_lookup_addr_u32(index: RomIndex) -> *const u32 {
+    let rom_function_table_index = ROM_APITABLE_ADDR + (index as usize * 4);
+    rom_function_table_index as *const u32
+}
+
 /// Return the function pointer to the specified ROM function
 ///
 /// This function pointer still needs to be cast to the correct function signature
