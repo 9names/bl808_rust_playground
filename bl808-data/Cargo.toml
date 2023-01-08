@@ -1,0 +1,11 @@
+[package]
+name = "bl808-data"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.66"
+regex = "1.6.0"
+ref_thread_local = "0.1.1"
+tracing = "0.1.37"
+tracing-subscriber = "0.3.16"
