@@ -1,0 +1,12 @@
+#define __ALWAYS_INLINE 
+#define ATTR_TCM_SECTION
+#include "typedefs.h"
+#include "misc.h"
+#include "bl808_aon_stub.h"
+#include "bl808_gpio.h"
+#include "bl808_glb_gpio.h"
+#include "bl808_hbn.h"
+#include "bl808_l1c.h"
+#include "bl808_sflash.h"
+#include "bl808_sf_ctrl.h"
+#include "bl808_uart.h"
