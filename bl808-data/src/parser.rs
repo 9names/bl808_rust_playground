@@ -78,8 +78,8 @@ impl Parser {
             ParseState::BlockName => {
                 if let Some(parse) = parse_result {
                     match parse {
-                        crate::ParseResult::Match(n) => {
-                            println!("whats my name? {n:?}")
+                        crate::ParseResult::Match(_n) => {
+                            // println!("whats my name? {n:?}")
                         }
                         crate::ParseResult::Capture(c) => {
                             if let Some(reg) = self.register.as_mut() {
@@ -110,7 +110,9 @@ impl Parser {
                 if let Some(parse) = parse_result {
                     let mut field = Field::new();
                     match parse {
-                        crate::ParseResult::Match(m) => println!("what a match: {m:?}"),
+                        crate::ParseResult::Match(_m) => {
+                            // println!("what a match: {m:?}")
+                        },
                         crate::ParseResult::Capture(c) => {
                             field.name = c[0].clone();
                             // c[1] is number of bits, we don't need that.
@@ -127,7 +129,7 @@ impl Parser {
                             field.name = c[0].clone();
                         }
                     }
-                    println!("field  {field:?}");
+                    // println!("field  {field:?}");
                     if let Some(reg) = self.register.as_mut() {
                         reg.fields.push(field);
                     }
@@ -154,20 +156,20 @@ impl Parser {
                             field.name = c[0].clone();
                         }
                     }
-                    println!("field  {field:?}");
+                    // println!("field  {field:?}");
                     if let Some(reg) = self.register.as_mut() {
                         reg.fields.push(field);
                     }
                 } else {
-                    println!("fielding the wrong question?");
+                    // println!("fielding the wrong question?");
                 }
             }
             ParseState::Size => {}
             ParseState::Name => {
                 if let Some(parse) = parse_result {
                     match parse {
-                        crate::ParseResult::Match(n) => {
-                            println!("whats my name? {n:?}")
+                        crate::ParseResult::Match(_n) => {
+                            // println!("whats my name? {n:?}")
                         }
                         crate::ParseResult::Capture(c) => {
                             if let Some(reg) = self.register.as_mut() {

@@ -15,7 +15,7 @@ macro_rules! regex {
 fn main() -> anyhow::Result<()> {
     // Use tracing to get good debug tracing, and register stdout as a tracing subscriber
     let subscriber = FmtSubscriber::builder()
-        .with_max_level(Level::TRACE)
+        .with_max_level(Level::INFO) // Set this to DEBUG or TRACE to get debugging info
         .finish();
     tracing::subscriber::set_global_default(subscriber).expect("setting default subscriber failed");
     let f = std::fs::read("sources/headers/glb_basic.h")?;
