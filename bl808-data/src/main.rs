@@ -31,7 +31,7 @@ fn main() -> anyhow::Result<()> {
 
     // Dump out all the registers
     for register in parser.registers() {
-        println!("{:?}", register);
+        println!("{}", register);
     }
     Ok(())
 }

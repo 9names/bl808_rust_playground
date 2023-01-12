@@ -21,6 +21,16 @@ impl Register {
     }
 }
 
+impl fmt::Display for Register {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "<register>\n\t<name>{}</name>\n\t<description>{}</description>\n\t<address_offset>{}</address_offset>\n\t<fields>\n", self.name, self.description, self.address_offset)?;
+        for field in &self.fields {
+            write!(f, "{}", field)?;
+        }
+        write!(f, "\t</fields>\n</register>\n")
+    }
+}
+
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct Field {
     name: String,
@@ -44,11 +54,12 @@ impl fmt::Display for Field {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "<field>\n
-        \t<name>{}</name>\n
-        \t<description>{}</description>
-        \t<lsb>{}</lsb>
-        \t<msb>{}</,msb>
+            "\t<field>
+        \t\t<name>{}</name>
+        \t\t<description>{}</description>
+        \t\t<lsb>{}</lsb>
+        \t\t<msb>{}</msb>
+        \t</field>
         ",
             self.name, self.description, self.lsb, self.msb,
         )
@@ -74,7 +85,7 @@ impl Parser {
     pub fn parse(&mut self, line_num: usize, line: String) {
         let (newstate, parse_result) = parseit(self.state, line, line_num);
         match newstate {
-            ParseState::NoMatch => todo!(),
+            ParseState::NoMatch => {}
             ParseState::BlockName => {
                 if let Some(parse) = parse_result {
                     match parse {
@@ -112,7 +123,7 @@ impl Parser {
                     match parse {
                         crate::ParseResult::Match(_m) => {
                             // println!("what a match: {m:?}")
-                        },
+                        }
                         crate::ParseResult::Capture(c) => {
                             field.name = c[0].clone();
                             // c[1] is number of bits, we don't need that.
