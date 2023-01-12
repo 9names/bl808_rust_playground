@@ -140,9 +140,11 @@ impl Parser {
                             field.name = c[0].clone();
                         }
                     }
-                    // println!("field  {field:?}");
                     if let Some(reg) = self.register.as_mut() {
-                        reg.fields.push(field);
+                        // TODO: don't generate empty field so we don't have to skip it
+                        if !field.name.trim().is_empty() {
+                            reg.fields.push(field);
+                        }
                     }
                 }
             }
