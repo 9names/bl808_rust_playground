@@ -1,5 +1,3 @@
-use core::fmt;
-
 use tracing::{event, instrument, Level};
 pub mod parser;
 
@@ -29,59 +27,6 @@ macro_rules! regex {
         }
         <REGEX as ::ref_thread_local::RefThreadLocal<::regex::Regex>>::borrow(&REGEX)
     }};
-}
-
-#[derive(Clone, Debug, PartialEq, Eq)]
-pub struct Register {
-    name: String,
-    description: String,
-    address_offset: String,
-    fields: Vec<Field>,
-}
-
-impl Register {
-    fn new() -> Register {
-        Register {
-            name: "".to_string(),
-            description: "".to_string(),
-            address_offset: "".to_string(),
-            fields: vec![],
-        }
-    }
-}
-
-#[derive(Clone, Debug, PartialEq, Eq)]
-pub struct Field {
-    name: String,
-    description: String,
-    lsb: String,
-    msb: String,
-}
-
-impl Field {
-    fn new() -> Field {
-        Field {
-            name: "".to_string(),
-            description: "".to_string(),
-            lsb: "".to_string(),
-            msb: "".to_string(),
-        }
-    }
-}
-
-impl fmt::Display for Field {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "<field>\n
-        \t<name>{}</name>\n
-        \t<description>{}</description>
-        \t<lsb>{}</lsb>
-        \t<msb>{}</,msb>
-        ",
-            self.name, self.description, self.lsb, self.msb,
-        )
-    }
 }
 
 #[instrument]
