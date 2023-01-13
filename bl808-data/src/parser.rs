@@ -8,6 +8,7 @@ pub struct Register {
     description: String,
     address_offset: String,
     fields: Vec<Field>,
+    reset_value: Option<String>,
 }
 
 impl Register {
@@ -17,6 +18,7 @@ impl Register {
             description: "".to_string(),
             address_offset: "".to_string(),
             fields: vec![],
+            reset_value: None,
         }
     }
 }
@@ -37,6 +39,8 @@ pub struct Field {
     description: String,
     lsb: String,
     msb: String,
+    access: String,
+    reset_value: String,
 }
 
 impl Field {
@@ -46,6 +50,8 @@ impl Field {
             description: "".to_string(),
             lsb: "".to_string(),
             msb: "".to_string(),
+            access: "".to_string(),
+            reset_value: "".to_string(),
         }
     }
 }
@@ -54,8 +60,8 @@ impl fmt::Display for Field {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "<field>\n<name>{}</name>\n<description>{}</description>\n<lsb>{}</lsb>\n<msb>{}</msb>\n</field>\n",
-            self.name, self.description, self.lsb, self.msb,
+            "<field>\n<name>{}</name>\n<description>{}</description>\n<lsb>{}</lsb>\n<msb>{}</msb>\n<access>{}</access>\n<resetValue>{}</resetValue>\n</field>\n",
+            self.name, self.description, self.lsb, self.msb, self.access, self.reset_value,
         )
     }
 }
@@ -119,6 +125,12 @@ impl Parser {
                             // println!("what a match: {m:?}")
                         }
                         crate::ParseResult::Capture(c) => {
+                            // [0] is the field name
+                            // [1] is field width
+                            // [2] is range of bits
+                            // [3] is access modifier
+                            // [4] is reset value
+
                             field.name = c[0].trim().to_string();
                             // c[1] is number of bits, we don't need that.
                             if c[2].contains(':') {
@@ -128,10 +140,11 @@ impl Parser {
                                 field.msb = msb.unwrap().trim().to_string();
                                 field.lsb = lsb.unwrap().trim().to_string();
                             } else {
-                                let bits = c[2].trim().to_string();
-                                field.msb = bits.clone();
-                                field.lsb = bits.clone();
+                                field.msb = c[2].trim().to_string();
+                                field.lsb = field.msb.clone();
                             }
+                            field.access = c[3].trim().to_string();
+                            field.reset_value = c[4].trim().to_string();
                         }
                     }
                     if let Some(reg) = self.register.as_mut() {
@@ -148,19 +161,20 @@ impl Parser {
                     match parse {
                         crate::ParseResult::Match(_) => panic!("Not expecting match"),
                         crate::ParseResult::Capture(c) => {
-                            field.name = c[0].clone();
+                            field.name = c[0].trim().to_string();
                             // c[1] is number of bits, we don't need that.
                             if c[2].contains(':') {
                                 let mut c_arr = c[2].split(':');
                                 let msb = c_arr.next();
                                 let lsb = c_arr.next();
-                                field.msb = msb.unwrap().to_string();
-                                field.lsb = lsb.unwrap().to_string();
+                                field.msb = msb.unwrap().trim().to_string();
+                                field.lsb = lsb.unwrap().trim().to_string();
                             } else {
-                                field.msb = c[2].clone();
-                                field.lsb = c[2].clone();
+                                field.msb = c[2].trim().to_string();
+                                field.lsb = field.msb.clone();
                             }
-                            field.name = c[0].clone();
+                            field.access = c[3].trim().to_string();
+                            field.reset_value = c[4].trim().to_string();
                         }
                     }
                     // println!("field  {field:?}");
