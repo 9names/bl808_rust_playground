@@ -119,19 +119,19 @@ impl Parser {
                             // println!("what a match: {m:?}")
                         }
                         crate::ParseResult::Capture(c) => {
-                            field.name = c[0].clone();
+                            field.name = c[0].trim().to_string();
                             // c[1] is number of bits, we don't need that.
                             if c[2].contains(':') {
                                 let mut c_arr = c[2].split(':');
                                 let msb = c_arr.next();
                                 let lsb = c_arr.next();
-                                field.msb = msb.unwrap().to_string();
-                                field.lsb = lsb.unwrap().to_string();
+                                field.msb = msb.unwrap().trim().to_string();
+                                field.lsb = lsb.unwrap().trim().to_string();
                             } else {
-                                field.msb = c[2].clone();
-                                field.lsb = c[2].clone();
+                                let bits = c[2].trim().to_string();
+                                field.msb = bits.clone();
+                                field.lsb = bits.clone();
                             }
-                            field.name = c[0].clone();
                         }
                     }
                     if let Some(reg) = self.register.as_mut() {
