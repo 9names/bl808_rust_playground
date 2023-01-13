@@ -41,6 +41,7 @@ pub fn parseit(
         // Looking for start of register block: "struct glb_reg {"
         ParseState::NoMatch => if let Some(m) = regex!(r"\s*struct\s*([a-zA-Z_\d]*)\s*\{").captures(&line) {
             state = ParseState::BlockName;
+            // 1st capture is the name of the register block
             data.push(String::from(m.get(1).unwrap().as_str()));
             event!(Level::TRACE, "\nCaptures: {}", data[0]);
             (state, Some(ParseResult::Capture(data)))
@@ -51,7 +52,9 @@ pub fn parseit(
         // Looking for register address: "/* 0x0 : soc_info0 */""
         ParseState::BlockName => if let Some(m) = regex!(r"\s*\.*/* (0x\d*) : (.*) \*/").captures(&line) {
             state = ParseState::BlockAddr;
+            // 1st capture is register offset
             data.push(String::from(m.get(1).unwrap().as_str()));
+            // 2nd capture is register name
             data.push(String::from(m.get(2).unwrap().as_str()));
             event!(Level::TRACE, "\nCaptures: {}, {}", data[0], data[1]);
             (state, Some(ParseResult::Capture(data)))
@@ -85,10 +88,15 @@ pub fn parseit(
         ParseState::StructStr => {
             if let Some(m) = regex!(r"\s*uint32_t *([a-zA-Z_\d]*) *: *(\d*); */\* *\[([\d: ]*)\],\s*([r/wsvd]*)\s*,\s*(0x[\da-fA-F]*) \*/.*").captures(&line) {
                 state = ParseState::StructStr;
+                // 1st capture is the field name
                 data.push(String::from(m.get(1).unwrap().as_str()));
+                // 2nd capture is field width
                 data.push(String::from(m.get(2).unwrap().as_str()));
+                // 3rd capture is the range of bits
                 data.push(String::from(m.get(3).unwrap().as_str()));
+                // 4th capture is access modifier
                 data.push(String::from(m.get(4).unwrap().as_str()));
+                // 5th capture is reset value
                 data.push(String::from(m.get(5).unwrap().as_str()));
                 event!(Level::TRACE,"\nCaptures: {}, {}, {}, {}, {}", data[0], data[1], data[2], data[3], data[4]);
                 (state, Some(ParseResult::Capture(data)))
