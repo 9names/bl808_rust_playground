@@ -23,11 +23,11 @@ impl Register {
 
 impl fmt::Display for Register {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "<register>\n\t<name>{}</name>\n\t<description>{}</description>\n\t<address_offset>{}</address_offset>\n\t<fields>\n", self.name, self.description, self.address_offset)?;
+        write!(f, "<register>\n<name>{}</name>\n<description>{}</description>\n<address_offset>{}</address_offset>\n<fields>\n", self.name, self.description, self.address_offset)?;
         for field in &self.fields {
             write!(f, "{}", field)?;
         }
-        write!(f, "\t</fields>\n</register>\n")
+        write!(f, "</fields>\n</register>")
     }
 }
 
@@ -54,13 +54,7 @@ impl fmt::Display for Field {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "\t<field>
-        \t\t<name>{}</name>
-        \t\t<description>{}</description>
-        \t\t<lsb>{}</lsb>
-        \t\t<msb>{}</msb>
-        \t</field>
-        ",
+            "<field>\n<name>{}</name>\n<description>{}</description>\n<lsb>{}</lsb>\n<msb>{}</msb>\n</field>\n",
             self.name, self.description, self.lsb, self.msb,
         )
     }
