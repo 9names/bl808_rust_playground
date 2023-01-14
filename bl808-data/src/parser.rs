@@ -39,10 +39,7 @@ impl fmt::Display for Register {
         for field in &self.fields {
             write!(f, "{}", field)?;
         }
-        write!(
-            f,
-            "</fields>\n</register>",
-        )
+        write!(f, "</fields>\n</register>",)
     }
 }
 
