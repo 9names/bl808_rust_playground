@@ -63,7 +63,7 @@ fn svd_access_map(access: &str) -> &str {
         "r/w" => "read-write",
         "r" => "read",
         "rsvd" => "read",
-        _ => "UNMAPPED_PLZ_FIX"
+        _ => "UNMAPPED_PLZ_FIX",
     }
 }
 
@@ -71,8 +71,8 @@ impl fmt::Display for Field {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
-            "<field>\n<name>{}</name>\n<description>{}</description>\n<lsb>{}</lsb>\n<msb>{}</msb>\n<access>{}</access>\n<resetValue>{}</resetValue>\n</field>\n",
-            self.name, self.description, self.lsb, self.msb, svd_access_map(&self.access), self.reset_value,
+            "<field>\n<name>{}</name>\n<description>{}</description>\n<bitRange>[{}:{}]</bitRange>\n<access>{}</access>\n<resetValue>{}</resetValue>\n</field>\n",
+            self.name, self.description, self.msb, self.lsb, svd_access_map(&self.access), self.reset_value,
         )
     }
 }
