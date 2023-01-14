@@ -25,22 +25,23 @@ impl Register {
 
 impl fmt::Display for Register {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "<register>\n<name>{}</name>\n<description>{}</description>\n<address_offset>{}</address_offset>\n<fields>\n", self.name, self.description, self.address_offset)?;
         // Assuming u32 register sizes for now
+        // Calculate reset value
         let mut reset_value: u32 = 0;
         for field in &self.fields {
-            write!(f, "{}", field)?;
             if let Some(reset_value_str) = field.reset_value.strip_prefix("0x") {
                 let value = u32::from_str_radix(reset_value_str, 16).unwrap();
                 let offset = field.lsb.parse::<u32>().unwrap();
                 reset_value += value << offset;
             }
         }
+        write!(f, "<register>\n<name>{}</name>\n<description>{}</description>\n<address_offset>{}</address_offset>\n<resetValue>{:#010X}</resetValue>\n<fields>\n", self.name, self.description, self.address_offset, reset_value)?;
+        for field in &self.fields {
+            write!(f, "{}", field)?;
+        }
         write!(
             f,
-            // 8 digits + "0x" prefix == 10 characters
-            "</fields>\n<resetValue>{:#010X}</resetValue>\n</register>",
-            reset_value
+            "</fields>\n</register>",
         )
     }
 }
