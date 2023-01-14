@@ -8,15 +8,15 @@ pub const HEADER: &str = r#"<?xml version="1.0" encoding="utf-8"?>
   <vendorID>bouffalolab</vendorID>
   <name>BL808</name>
   <series></series> <!-- todo -->
-  <version>1.0</version>
+  <version>0.1</version>
   <description>Bouffalo BL808 chip</description>
   <licenseText>
 Copyright (c) 2022 Bouffalo Lab
 bl808-pac is licensed under Mulan PSL v2.
 You can use this software according to the terms and conditions of the Mulan PSL v2.
 You may obtain a copy of Mulan PSL v2 at:
-         http://license.coscl.org.cn/MulanPSL2
-THIS SOFTWARE IS PROVIDED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OF ANY KIND,
+          http://license.coscl.org.cn/MulanPSL2
+THIS SOFTWARE IS PROVIDED ON AN &amp;quot;AS IS&amp;quot; BASIS, WITHOUT WARRANTIES OF ANY KIND,
 EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO NON-INFRINGEMENT,
 MERCHANTABILITY OR FIT FOR A PARTICULAR PURPOSE.
 See the Mulan PSL v2 for more details.
@@ -27,7 +27,6 @@ See the Mulan PSL v2 for more details.
   <access>read-write</access>
   <resetValue>0x00000000</resetValue>
   <resetMask>0xFFFFFFFF</resetMask>
-  
   <peripherals>
 "#;
 
@@ -71,6 +70,15 @@ pub const AGC: &str = r#"<name>AGC</name>
 
 // #define SEC_DBG_BASE     ((uint32_t)0x20003000)
 pub const SEC_DBG: &str = r#""#;
+
+pub const CODEC: &str = r#"<name>CODEC</name>
+<description>Codec miscellaneous control</description>
+<baseAddress>0x30020000</baseAddress>
+<addressBlock>
+  <offset>0</offset>
+  <size>0x1000</size>
+  <usage>registers</usage>
+</addressBlock>"#;
 
 pub const DEBUG: &str = r#"<name>DEBUG</name>
 <description>Secure debug configuration</description>
@@ -119,6 +127,7 @@ pub const CCI: &str = r#"      <name>CCI</name>
   <size>0x1000</size>
   <usage>registers</usage>
 </addressBlock>"#;
+
 // #define MCU_MISC_BASE    ((uint32_t)0x20009000)
 pub const MCU_MISC: &str = r#"<name>MISC</name>
 <description>Chip Miscellaneous control</description>
