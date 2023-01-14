@@ -74,8 +74,8 @@ impl Field {
 fn svd_access_map(access: &str) -> &str {
     match access {
         "r/w" => "read-write",
-        "r" => "read",
-        "rsvd" => "read",
+        "r" => "read-only",
+        "rsvd" => "read-only",
         _ => "UNMAPPED_PLZ_FIX",
     }
 }
