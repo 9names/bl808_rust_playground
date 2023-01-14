@@ -35,7 +35,7 @@ impl fmt::Display for Register {
                 reset_value += value << offset;
             }
         }
-        write!(f, "<register>\n<name>{}</name>\n<description>{}</description>\n<address_offset>{}</address_offset>\n<resetValue>{:#010X}</resetValue>\n<fields>\n", self.name, self.description, self.address_offset, reset_value)?;
+        write!(f, "<register>\n<name>{}</name>\n<description>{}</description>\n<addressOffset>{}</addressOffset>\n<resetValue>{:#010X}</resetValue>\n<fields>\n", self.name, self.description, self.address_offset, reset_value)?;
         for field in &self.fields {
             write!(f, "{}", field)?;
         }
