@@ -13,4 +13,4 @@ tracing-subscriber = "0.3.16"
 
 [[bin]]
 name = "svd_generator"
-path = "src/svd_generator.rs"
+path = "src/bin/svd_generator.rs"
