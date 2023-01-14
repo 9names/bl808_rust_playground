@@ -56,12 +56,23 @@ impl Field {
     }
 }
 
+/// SVD uses different strings to represent access modifiers than what is used in the SDK headers.
+/// map these through to SVD versions
+fn svd_access_map(access: &str) -> &str {
+    match access {
+        "r/w" => "read-write",
+        "r" => "read",
+        "rsvd" => "read",
+        _ => "UNMAPPED_PLZ_FIX"
+    }
+}
+
 impl fmt::Display for Field {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(
             f,
             "<field>\n<name>{}</name>\n<description>{}</description>\n<lsb>{}</lsb>\n<msb>{}</msb>\n<access>{}</access>\n<resetValue>{}</resetValue>\n</field>\n",
-            self.name, self.description, self.lsb, self.msb, self.access, self.reset_value,
+            self.name, self.description, self.lsb, self.msb, svd_access_map(&self.access), self.reset_value,
         )
     }
 }
