@@ -1,5 +1,6 @@
 use tracing::{event, instrument, Level};
 pub mod parser;
+pub mod svd_fragments;
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum ParseState {
@@ -134,7 +135,6 @@ pub fn parseit(
                     state = ParseState::Field;
                     (state, None)
                 }
-                
             }
         }
         // End of struct (in case we missed it):  "} BF;"
