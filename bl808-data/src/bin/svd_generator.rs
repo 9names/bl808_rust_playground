@@ -71,9 +71,10 @@ fn main() -> anyhow::Result<()> {
         "sources/headers/bl_mcu_sdk/mcu_misc_reg.h",
         svd_fragments::MCU_MISC,
     );
-    // These might be for c906
+    // mm == c906. This tool is only caring about e907 peripherals at the moment.
     // let _ = peripheral("sources/headers/bl_mcu_sdk/mm_glb_reg.h", svd_fragments::GLB);
     // let _ = peripheral("sources/headers/bl_mcu_sdk/mm_misc_reg.h", svd_fragments::);
+
     let _ = peripheral("sources/headers/bl_mcu_sdk/pds_reg.h", svd_fragments::PDS);
     let _ = peripherals(
         &[
@@ -84,10 +85,19 @@ fn main() -> anyhow::Result<()> {
     );
     let _ = peripheral("sources/headers/bl_mcu_sdk/sdh_reg.h", svd_fragments::SDH);
 
-    // let _ = peripheral("sources/headers/bl_mcu_sdk/sf_ctrl_reg.h", svd_fragments::SF_CTRL);
+    let _ = peripheral(
+        "sources/headers/bl_mcu_sdk/sf_ctrl_reg.h",
+        svd_fragments::SF_CTRL,
+    );
 
-    // let _ = peripheral("sources/headers/bl_mcu_sdk/tzc_nsec_reg.h", svd_fragments::TZC_NSEC);
-    // let _ = peripheral("sources/headers/bl_mcu_sdk/tzc_sec_reg.h", svd_fragments::TZC_SEC);
+    let _ = peripheral(
+        "sources/headers/bl_mcu_sdk/tzc_sec_reg.h",
+        svd_fragments::TZC_SEC,
+    );
+    let _ = peripheral(
+        "sources/headers/bl_mcu_sdk/tzc_nsec_reg.h",
+        svd_fragments::TZC_NSEC,
+    );
     // let _ = peripheral("sources/headers/bl_mcu_sdk/.h", svd_fragments::);
 
     println!("{}", svd_fragments::FOOTER);
