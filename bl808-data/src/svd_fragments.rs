@@ -98,14 +98,24 @@ pub const SEC_ENG: &str = r#"<name>SEC</name>
   <size>0x1000</size>
   <usage>registers</usage>
 </addressBlock>"#;
-// #define TZ1_BASE         ((uint32_t)0x20005000)
-pub const TZ1: &str = r#""#;
 // #define TZC_SEC_BASE     ((uint32_t)0x20005000)
-pub const TZC_SEC: &str = r#""#;
-// #define TZ2_BASE         ((uint32_t)0x20006000)
-pub const TZ2: &str = r#""#;
+pub const TZC_SEC: &str = r#"<name>TZC_SEC</name>
+<description>Trust zone isolation</description>
+<baseAddress>0x20005000</baseAddress>
+<addressBlock>
+  <offset>0</offset>
+  <size>0x1000</size>
+  <usage>registers</usage>
+</addressBlock>"#;
 // #define TZC_NSEC_BASE    ((uint32_t)0x20006000)
-pub const TZC_NSEC: &str = r#""#;
+pub const TZC_NSEC: &str = r#"<name>TZC_NSEC</name>
+<description>Trust zone isolation 2</description>
+<baseAddress>0x20006000</baseAddress>
+<addressBlock>
+  <offset>0</offset>
+  <size>0x1000</size>
+  <usage>registers</usage>
+</addressBlock>"#;
 // #define EFUSE_BASE       ((uint32_t)0x20056000)
 pub const EFUSE: &str = r#"      <name>EFUSE</name>
 <description>eFuse memory control</description>
@@ -117,7 +127,15 @@ pub const EFUSE: &str = r#"      <name>EFUSE</name>
 </addressBlock>"#;
 
 // #define EF_DATA_BASE     ((uint32_t)0x20056000)
-pub const EF_DATA: &str = r#""#;
+pub const EF_DATA: &str = r#"      <name>EF_DATA</name>
+<description></description>
+<baseAddress>0x20056000</baseAddress>
+<addressBlock>
+  <offset>0</offset>
+  <size>0x1000</size>
+  <usage>registers</usage>
+</addressBlock>"#;
+
 // #define CCI_BASE         ((uint32_t)0x20008000)
 pub const CCI: &str = r#"      <name>CCI</name>
 <description>Camera Control Interface</description> <!-- todo verify -->
@@ -264,7 +282,7 @@ pub const SF_CTRL: &str = r#"<name>FLASH</name>
 <baseAddress>0x2000B000</baseAddress>
 <addressBlock>
   <offset>0</offset>
-  <size>0x100</size>
+  <size>0x400</size>
   <usage>registers</usage>
 </addressBlock>"#;
 // #define SF_CTRL_BASE     ((uint32_t)0x2000b000)
@@ -284,7 +302,14 @@ pub const DMA0: &str = r#"<name>DMA%s</name>
 pub const DMA1: &str = r#""#;
 
 // #define PDS_BASE         ((uint32_t)0x2000e000)
-pub const PDS: &str = r#""#;
+pub const PDS: &str = r#"<name>PDS_BASE</name>
+<description>Sleep control (Power-down sleep?)</description>
+<baseAddress>0x2000e000</baseAddress>
+<addressBlock>
+  <offset>0</offset>
+  <size>0xB00</size>
+  <usage>registers</usage>
+</addressBlock>"#;
 // #define HBN_BASE         ((uint32_t)0x2000f000)
 pub const HBN: &str = r#"<name>HBN</name>
 <description>Hibernate (Deep sleep) control</description>
@@ -300,7 +325,7 @@ pub const AON: &str = r#"<name>AON</name>
 <baseAddress>0x2000F800</baseAddress>
 <addressBlock>
   <offset>0</offset>
-  <size>0x800</size>
+  <size>0x1000</size>
   <usage>registers</usage>
 </addressBlock>"#;
 // #define EMI_MISC_BASE    ((uint32_t)0x20050000)
@@ -311,7 +336,7 @@ pub const PSRAM_CTRL: &str = r#"<name>PSRAM</name>
 <baseAddress>0x20052000</baseAddress>
 <addressBlock>
   <offset>0</offset>
-  <size>0x100</size>
+  <size>0x200</size>
   <usage>registers</usage>
 </addressBlock>"#;
 
