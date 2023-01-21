@@ -10,7 +10,7 @@ bl808-pac = { git = "https://github.com/bouffalolab/bl808-pac", rev = "6b0cbc319
 bl808-rom-wrapper = { path = "../bl808-rom-wrapper" }
 embedded-hal = { version="0.2.7", features = ["unproven"] }
 panic-halt = "0.2.0"
-riscv-rt = "0.10.0"
+riscv-rt = "0.11.0"
 
 
 [build-dependencies]
